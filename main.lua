@@ -4,28 +4,30 @@ local Collider = require "obj.Collider"
 local bump = require "lib.bump"
 
 local world = bump.newWorld()
-local Blorps = {} -- DEBUG ONLY BRUH
+local objects = {}
 
 function love.load()
+  local pario = love.graphics.newImage("data/pario.jpg")
+  table.insert(objects,Renderable:new("pario",400,300,120,120,pario,nil,nil))
 end
 
 function love.update(dt)
 end
 
 function love.draw()
-  for i,object in ipairs(Blorps) do
+  for i,object in ipairs(objects) do
     object:render()
     
-    love.graphics.print(object.name..", "..object.collider.name.."\nx: "..object.x.."\ny: "..object.y,100,50*i)
+    --love.graphics.print(object.name..", "..object.collider.name.."\nx: "..object.x.."\ny: "..object.y,100,50*i)
   end
 end
 
 function love.mousepressed(x,y)
-  local len = #Blorps + 1
-  local newR = Renderable:new("R"..tostring(len),x-50,y-50,100,100,nil,{255,255/len,0},"line")
-  local newC = Collider:new("C"..tostring(len),newR.x,newR.y,newR.w,newR.h,"touch",world)
+  local len = #objects + 1
+  local newR = Renderable:new("wallrenderer",x-50,y-50,100,100,nil,{255,255,0},"line")
+  local newC = Collider:new("wall",newR.x,newR.y,newR.w,newR.h,world)
   newR:attachCollider(newC)
-  Blorps[#Blorps + 1] = newR
+  objects[len] = newR
 end
 
 function love.keypressed(key)

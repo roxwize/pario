@@ -16,9 +16,13 @@ function Renderable:move(x,y)
 end
 
 function Renderable:render()
-  if not img then
+  if self.img == nil then
+    love.graphics.push()
     love.graphics.setColor(self.color)
     love.graphics.rectangle(self.ftype,self.x,self.y,self.w,self.h)
+    love.graphics.pop()
+  else
+    love.graphics.draw(self.img,self.x,self.y)
   end
 end
 

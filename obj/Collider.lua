@@ -4,7 +4,7 @@ local GameObject = require "obj.GameObject"
 local Collider = GameObject:subclass("Collider")
 
 function Collider:initialize(name,x,y,w,h,world)
-  GameObject.initialize(self,name,x,y,w,h)
+  GameObject.initialize(self,name,x,y,w,h,"Collider")
   self.world = world
   
   self.world:add(self,x,y,w,h)

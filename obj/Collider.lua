@@ -23,8 +23,9 @@ function Collider:move(gx,gy)
   local ax, ay, cols, len = self.world:move(self,gx,gy,filter)
   self.x = ax
   self.y = ay
-  if self.renderable ~= nil then
-    self.renderable:move(ax,ay)
+  print(self.components.renderable)
+  if self.components.renderable ~= nil then
+    self.components.renderable:move(ax,ay)
   end
   return cols
 end
@@ -38,10 +39,6 @@ end
 
 function Collider:destroy()
   self.world:remove(self)
-end
-
-function Collider:attachRenderable(renderable)
-  self.renderable = renderable
 end
 
 return Collider

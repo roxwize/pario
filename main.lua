@@ -18,7 +18,7 @@ function love.draw()
   for i,object in ipairs(objects) do
     object:render()
     local list = object.name.."\n"
-    if object.components[1] then list = list..object.collider.name end
+    if object.components.collider then list = list..object.components.collider.name end
     love.graphics.print(list,0,i*30)
   end
 end
@@ -28,6 +28,7 @@ function love.mousepressed(x,y)
   local newR = Renderable:new("wallrenderer",x-50,y-50,100,100,nil,{255,255,0},"line")
   local newC = Collider:new("wall",newR.x,newR.y,newR.w,newR.h,world)
   newR:attachComponent(newC)
+  newC:move(newC.x,newC.y)
   objects[len] = newR
 end
 

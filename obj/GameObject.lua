@@ -13,18 +13,12 @@ function GameObject:initialize(name,x,y,w,h,objtype)
 end
 
 function GameObject:attachComponent(component)
-  print("Ok I Do")
-  print(component.name)
-  print(self.name)
-  table.insert(self.components,component)
-  table.insert(component.components,self)
-  print(self.components[1])
   if component.objtype == "Collider" then
-    if self.collider then return error("GameObjects can only have one Collider",2) end
-    self.collider = component
+    if self.components.collider then return error("GameObjects can only have one Collider",2) end
+    self.components.collider = component
   elseif component.objtype == "Renderable" then
-    if self.renderable then return error("GameObjects can only have one Renderable",2) end
-    self.renderable = component
+    if self.components.renderable then return error("GameObjects can only have one Renderable",2) end
+    self.components.renderable = component
   end
 end
 

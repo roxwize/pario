@@ -23,7 +23,6 @@ function Collider:move(gx,gy)
   local ax, ay, cols, len = self.world:move(self,gx,gy,filter)
   self.x = ax
   self.y = ay
-  print(self.components.renderable)
   if self.components.renderable ~= nil then
     self.components.renderable:move(ax,ay)
   end

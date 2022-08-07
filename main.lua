@@ -26,7 +26,8 @@ end
 function love.mousepressed(x,y)
   local len = #objects + 1
   local newR = Renderable:new("wallrenderer",x-50,y-50,100,100,nil,{255,255,0},"line")
-  local newC = Collider:new("wall",newR.x,newR.y,newR.w,newR.h,world)
+  local newC = Collider:new("wall",newR.x,newR.y,newR.w,newR.h,world,"World")
+  newC.colGroups.World = 1
   newR:attachComponent(newC,0)
   newC:move(newC.x,newC.y)
   objects[len] = newR

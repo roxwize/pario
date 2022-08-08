@@ -1,4 +1,5 @@
 local class = require "lib.middleclass"
+local Enum = require "data.enum"
 
 local GameObject = require "obj.GameObject"
 local Collider = GameObject:subclass("Collider")
@@ -31,12 +32,13 @@ function Collider:initialize(name,x,y,w,h,world,colType)
   self.colType = colType
   self.colGroups = {
     -- Collisions are set to zero by default and are modified manually
-      Player = 0,
-      World = 0,
-      Particle = 0,
-      Background = 0,
+      0,
+      0,
+      0,
+      0
   }
   self.defaultCollision = "slide"
+  print(self.colGroups[Enum.CollisionType.World])
   
   self.world:add(self,x,y,w,h)
   self:move(x,y) -- If placed inside another object, move away from it

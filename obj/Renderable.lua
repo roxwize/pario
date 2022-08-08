@@ -12,7 +12,6 @@ end
 
 function Renderable:move(x,y)
   if self.collider then -- NEver runs . . FIx DIS
-    print("Controls")
     --self.collider:move(x,y)
     --self:move(self.collider.x,self.collider.y)
   else

@@ -13,7 +13,6 @@ function GameObject:initialize(name,x,y,w,h,objtype)
 end
 
 function GameObject:attachComponent(component,r) -- "r" is just a bodge to prevent stack overflows
-  print(component.objtype)
   if component.objtype == "Collider" then
     if self.components.collider then return error("GameObjects can only have one Collider",2) end
     self.components.collider = component

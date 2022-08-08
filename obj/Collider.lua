@@ -36,13 +36,14 @@ function Collider:initialize(name,x,y,w,h,world,colType)
       Particle = 0,
       Background = 0,
   }
+  self.defaultCollision = "slide"
   
   self.world:add(self,x,y,w,h)
   self:move(x,y) -- If placed inside another object, move away from it
 end
 
 local filter = function(item,other)
-  if item.colGroups[other.colType] then return "slide"
+  if item.colGroups[other.colType] then return item.defaultCollision
   else return "cross" end
 end
 
